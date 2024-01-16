@@ -3,6 +3,7 @@ package org.example.todo;
 import org.example.exceptions.BadRequestApiException;
 import org.example.exceptions.NotFoundApiException;
 
+import javax.ws.rs.WebApplicationException;
 import java.util.List;
 import java.util.stream.Collectors;
 

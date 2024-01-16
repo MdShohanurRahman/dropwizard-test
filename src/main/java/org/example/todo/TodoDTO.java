@@ -13,6 +13,12 @@ public class TodoDTO {
         completed = todo.isCompleted();
     }
 
+    public TodoDTO(long id, String title, boolean completed) {
+        this.id = id;
+        this.title = title;
+        this.completed = completed;
+    }
+
     public TodoEntity toTodoEntity() {
         TodoEntity todoEntity = new TodoEntity();
         todoEntity.setTitle(title);

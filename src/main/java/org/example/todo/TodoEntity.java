@@ -1,6 +1,7 @@
 package org.example.todo;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "todos")
@@ -46,5 +47,18 @@ public class TodoEntity {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoEntity that = (TodoEntity) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
