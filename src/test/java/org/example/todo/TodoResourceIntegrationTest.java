@@ -1,10 +1,12 @@
 package org.example.todo;
 
 import io.dropwizard.testing.ResourceHelpers;
+import io.dropwizard.testing.junit.DAOTestRule;
 import io.dropwizard.testing.junit.DropwizardAppRule;
 import org.example.App;
 import org.example.configs.AppConfig;
 import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -22,6 +24,9 @@ public class TodoResourceIntegrationTest {
             new DropwizardAppRule<>(App.class, ResourceHelpers.resourceFilePath("config.yml"));
     private final Client client = ClientBuilder.newClient();
     private final String baseUrl = String.format("http://localhost:%d", RULE.getLocalPort());
+
+    @Rule
+    public DAOTestRule database = DAOTestRule.newBuilder().addEntityClass(TodoEntity.class).build();
 
     @Test
     public void testCrudOperation() {
